@@ -28,13 +28,14 @@ class SharedData():
         self.snd_helper = AudioUtils()
         self.fs_utils = FSUtils()
         self.CAPTION = "Pong"
-        self.MAX_X = 1080
-        self.MAX_Y = 720
+        self.MAX_X = 2000
+        self.MAX_Y = 1000
         self.FRAME_RATE = 60
         self.CELL_SIZE = 15
         self.FONT_SIZE = 15
         self.current_cwd = self.fs_utils.get_cwd()
         self.os_sep = self.fs_utils.get_os_sep()
+        self.PADDLE_WIDTH = 100
     
     # Get the game version from my site:
     def get_game_version(self):
@@ -43,6 +44,3 @@ class SharedData():
     # Another discarded function: This would print fancy text. This was also scrapped due to time constraints...
     def print_fancy(self, text: str, font: str = DEFAULT_FONT):
         tprint(text, font)
-        
-        
-        
