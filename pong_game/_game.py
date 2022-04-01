@@ -15,8 +15,8 @@ class Game():
         print(f"Current local time is: {self._data.date_utils.get_current_time()}.\n")
 
         # Initialization
-        rl.SetTargetFPS(60)
-        rl.InitWindow(self._data.MAX_X, self._data.MAX_Y, b'PONG!')
+        SetTargetFPS(60)
+        InitWindow(self._data.MAX_X, self._data.MAX_Y, b'PONG!')
 
 
         current_page = "title_page"
@@ -38,7 +38,7 @@ class Game():
         ball_y_vel = (random.randint(7, 15) * random.choice([1,-1]))
 
         # main logic loop
-        while not rl.WindowShouldClose():
+        while not WindowShouldClose():
 
             # TODO: create movement controller for paddles and ball and move relevant code from below to that file
 
@@ -46,39 +46,39 @@ class Game():
 
             # TODO: pretty up game title page
             if (current_page == "title_page"):
-                rl.BeginDrawing()
-                rl.ClearBackground(BLACK)
-                rl.DrawText(b'Welcome to PONG!', int(self._data.MAX_X / 2) - 500, int(self._data.MAX_Y / 2), 100, WHITE)
-                rl.DrawText(b'Press ENTER to begin', int(self._data.MAX_X / 2) - 450, int(self._data.MAX_Y / 1.4), 30, WHITE)
-                if rl.IsKeyPressed(KEY_ENTER):
+                BeginDrawing()
+                ClearBackground(BLACK)
+                DrawText(b'Welcome to PONG!', int(self._data.MAX_X / 2) - 500, int(self._data.MAX_Y / 2), 100, WHITE)
+                DrawText(b'Press ENTER to begin', int(self._data.MAX_X / 2) - 450, int(self._data.MAX_Y / 1.4), 30, WHITE)
+                if IsKeyPressed(KEY_ENTER):
                     current_page = "round_start_page"
-                rl.EndDrawing()
+                EndDrawing()
 
             # TODO: clean up round start page
             
             elif (current_page == "round_start_page"):
-                rl.BeginDrawing()
-                rl.ClearBackground(DARKGRAY)
+                BeginDrawing()
+                ClearBackground(DARKGRAY)
 
                 # TODO: Move this code to the window service file and change the player1, player2 variables to be stored in player_bar class
-                rl.DrawRectangle(player1_paddle_x,player1_paddle_y,20,100,BLUE)
-                rl.DrawRectangle(player2_paddle_x,player2_paddle_y,20,100,BLUE)
-                #rl.DrawRectangle(player1_paddle,BLUE)
-                #rl.DrawRectangle(player2_paddle,BLUE)
-                rl.DrawCircle(ball_x, ball_y, 30, GREEN)
-                rl.EndDrawing()
+                DrawRectangle(player1_paddle_x,player1_paddle_y,20,100,BLUE)
+                DrawRectangle(player2_paddle_x,player2_paddle_y,20,100,BLUE)
+                #DrawRectangle(player1_paddle,BLUE)
+                #DrawRectangle(player2_paddle,BLUE)
+                DrawCircle(ball_x, ball_y, 30, GREEN)
+                EndDrawing()
 
                 #This section of code controls the paddles and should be moved to the keyboard_service file
-                if rl.IsKeyDown(KEY_W) and (player1_paddle_y>0):
+                if IsKeyDown(KEY_W) and (player1_paddle_y>0):
                     player1_paddle_y -= 10
                     print ("Going Up")
-                if rl.IsKeyDown(KEY_S) and (player1_paddle_y<self._data.MAX_Y - 100):
+                if IsKeyDown(KEY_S) and (player1_paddle_y<self._data.MAX_Y - 100):
                     player1_paddle_y += 10
                     print ("Going Down")
-                if rl.IsKeyDown(KEY_UP) and (player2_paddle_y>0):
+                if IsKeyDown(KEY_UP) and (player2_paddle_y>0):
                     player2_paddle_y -= 10
                     print ("Going Up")
-                if rl.IsKeyDown(KEY_DOWN) and (player2_paddle_y<self._data.MAX_Y - 100):
+                if IsKeyDown(KEY_DOWN) and (player2_paddle_y<self._data.MAX_Y - 100):
                     player2_paddle_y += 10
                     print ("Going Down")
 
@@ -111,13 +111,13 @@ class Game():
 
             # TODO: clean up life lost page
             elif (current_page == "scored_page"):
-                rl.BeginDrawing()
-                rl.ClearBackground(BLACK)
-                rl.DrawText(b'Player 1 Score: ' + (str(player1_score).encode()),20,20,60,WHITE)
-                rl.DrawText(b'Player 2 Score: ' + (str(player2_score).encode()),self._data.MAX_X-800,20,60,WHITE)
-                rl.DrawText(b'Nice Shot!', int(self._data.MAX_X / 2) - 500, int(self._data.MAX_Y / 2), 100, WHITE)
-                rl.DrawText(b'Press ENTER to start next round', int(self._data.MAX_X / 2) - 450, int(self._data.MAX_Y / 1.4), 30, WHITE)
-                if rl.IsKeyPressed(KEY_ENTER):
+                BeginDrawing()
+                ClearBackground(BLACK)
+                DrawText(b'Player 1 Score: ' + (str(player1_score).encode()),20,20,60,WHITE)
+                DrawText(b'Player 2 Score: ' + (str(player2_score).encode()),self._data.MAX_X-800,20,60,WHITE)
+                DrawText(b'Nice Shot!', int(self._data.MAX_X / 2) - 500, int(self._data.MAX_Y / 2), 100, WHITE)
+                DrawText(b'Press ENTER to start next round', int(self._data.MAX_X / 2) - 450, int(self._data.MAX_Y / 1.4), 30, WHITE)
+                if IsKeyPressed(KEY_ENTER):
                     #replace this with a call to reinitialize the ball
                     ball_x = int(self._data.MAX_X / 2)
                     ball_y = int(self._data.MAX_Y / 2)
@@ -125,7 +125,7 @@ class Game():
                     ball_y_vel = (random.choice([1,-1]) * 10)
 
                     current_page = "round_start_page"
-                rl.EndDrawing()
+                EndDrawing()
 
             # TODO: create and implement game end page
             elif (current_page == "game_end_page"):
