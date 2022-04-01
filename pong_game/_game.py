@@ -70,16 +70,16 @@ class Game():
 
                 #This section of code controls the paddles and should be moved to the keyboard_service file
                 if IsKeyDown(KEY_W) and (player1_paddle_y>0):
-                    player1_paddle_y -= 10
+                    player1_paddle_y -= 15
                     print ("Going Up")
                 if IsKeyDown(KEY_S) and (player1_paddle_y<self._data.MAX_Y - 100):
-                    player1_paddle_y += 10
+                    player1_paddle_y += 15
                     print ("Going Down")
                 if IsKeyDown(KEY_UP) and (player2_paddle_y>0):
-                    player2_paddle_y -= 10
+                    player2_paddle_y -= 15
                     print ("Going Up")
                 if IsKeyDown(KEY_DOWN) and (player2_paddle_y<self._data.MAX_Y - 100):
-                    player2_paddle_y += 10
+                    player2_paddle_y += 15
                     print ("Going Down")
 
                 #This section of code moves the ball each frame and should be moved to the window_service file
@@ -90,10 +90,10 @@ class Game():
                 #This section of code checks for and handles collisions with the paddle
                 if (math.sqrt((ball_x ** 2) + ((ball_y - player1_paddle_y - 50) ** 2))) < 80:
                     print("Hit player1 paddle")
-                    ball_x_vel *= -1
+                    ball_x_vel = abs(ball_x_vel)
                 if (math.sqrt(((ball_x - self._data.MAX_X) ** 2) + ((ball_y - player2_paddle_y - 50) ** 2))) < 80:
                     print("Hit player2 paddle")
-                    ball_x_vel *= -1
+                    ball_x_vel = - abs(ball_x_vel)
 
                 #This section of code checks for and handles when points are scored
                 if ball_x < 35:
